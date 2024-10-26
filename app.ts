@@ -1,5 +1,5 @@
 import { Subject } from "rxjs";
-import { map } from "rxjs";
+import { concatMap } from "rxjs";
 
 const subject = new Subject<number>();
 const handler: Array<number[]> = [
@@ -9,7 +9,7 @@ const handler: Array<number[]> = [
 
 subject
   .pipe(
-    map(async (event) => {
+    concatMap(async (event) => {
       await Promise.all(
         handler.map(([a, b, c]) => {
           if (a === event) {
